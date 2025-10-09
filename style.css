@@ -1,0 +1,262 @@
+/* --- THEME COLORS AND FONT (Velmora Inspired) --- */
+:root {
+    --font-family: 'Lora', serif; 
+    
+    /* DEFAULT: Light Mode Theme (Clean, High Contrast) */
+    --bg-color: #f8f8f8;          /* Light Gray Background */
+    --text-color: #333;           /* Dark Text (For Light Mode) */
+    --primary-color: #4f4d80;     /* Primary Accent (Deep Indigo) */
+    --secondary-text: #666;       /* Secondary Text (Gray) */
+    --card-bg: #fff;              /* White Card Background */
+    --border-color: #ddd;         /* Light Border */
+    --shadow-color: rgba(0, 0, 0, 0.15);
+    --success-color: #28a745;     /* Download Button Color (Success Green) */
+    --input-bg: #fff;          
+    --input-border: #ccc;
+}
+
+/* DARK MODE: Velmora Theme (Text Color is set to #ffffff) */
+body.dark-mode {
+    --bg-color: #1a1a3a;          /* Dark Blue Background */
+    --text-color: #ffffff;        /* PURE WHITE TEXT (Fixed for Dark Mode) */
+    --primary-color: #7b4397;     /* Purple accent from Velmora gradient */
+    --secondary-text: #e0e0e0;    /* Light Gray for secondary elements */
+    --card-bg: #282848;           /* Slightly lighter dark blue for cards */
+    --border-color: #3b3b6b;      /* Darker border for contrast */
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --success-color: #20b2aa;     /* Teal/Cyan for download button */
+    --input-bg: #1e1e3e;          
+    --input-border: #4d4d7d;
+}
+
+
+/* --- BASE STYLES --- */
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.6s ease, color 0.6s ease; 
+    min-height: 100vh;
+}
+
+/* Header and Search */
+header {
+    background-color: var(--card-bg); 
+    padding: 1.5em 2em;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky; 
+    top: 0;
+    z-index: 100;
+}
+
+h1 {
+    color: var(--primary-color); 
+    margin: 0;
+    font-size: 1.8em;
+    font-weight: 700; 
+}
+
+.search-container {
+    display: flex;
+    gap: 0.5em;
+}
+
+#search-input, button, select {
+    font-family: var(--font-family); 
+    padding: 0.7em 1.2em; 
+    border-radius: 8px; 
+    border: 1px solid var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+/* Button Styling (Using Primary Color for Light Mode, Gradient for Dark Mode) */
+button {
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+}
+
+/* Dark Mode Button Gradient (Velmora style) */
+body.dark-mode button:not(.download-btn) {
+    background: linear-gradient(90deg, #7b4397, #dc2430); 
+}
+body.dark-mode button:hover:not(.download-btn) {
+    background: linear-gradient(90deg, #6a3a82, #c71f28);
+}
+
+/* Light Mode Button Hover */
+body:not(.dark-mode) button:hover:not(.download-btn) {
+    background-color: #383669;
+}
+
+
+/* Main Layout: Sidebar and Content */
+.main-content {
+    display: flex;
+    padding: 2em;
+    gap: 2em;
+}
+
+#settings-column {
+    width: 250px;
+    padding: 1.5em;
+    background-color: var(--card-bg);
+    border-radius: 12px; 
+    box-shadow: 0 4px 10px var(--shadow-color);
+    flex-shrink: 0; 
+    height: fit-content;
+    transition: background-color 0.6s ease, box-shadow 0.6s ease;
+}
+
+#settings-column h2, #settings-column h3 {
+    color: var(--primary-color); 
+    margin-top: 0;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5em;
+}
+
+.settings-group {
+    margin-bottom: 1.5em;
+}
+
+main {
+    flex-grow: 1;
+}
+
+/* Book List Styles */
+#status-message {
+    text-align: center;
+    font-style: italic;
+    color: var(--text-color);
+    margin-top: 2em;
+    font-size: 1.1em;
+}
+
+#book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+    gap: 2.5em; 
+    margin-top: 1em;
+}
+
+.book {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+    border: 1px solid var(--border-color);
+    padding: 1em;
+    border-radius: 12px; 
+    background-color: var(--card-bg);
+    text-align: center;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease;
+}
+
+.book:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 16px var(--shadow-color); 
+}
+
+.book img {
+    width: 100%;
+    max-height: 280px; 
+    object-fit: contain;
+    border-radius: 8px; 
+    margin-bottom: 1em;
+}
+
+.book-details {
+    flex-grow: 1; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-start;
+    margin-bottom: 1em; 
+}
+
+.book h2 {
+    font-size: 1.25em; 
+    margin: 0 0 0.2em 0;
+    font-weight: 600;
+}
+
+.book h2 a {
+    text-decoration: none; 
+    color: var(--primary-color); 
+}
+
+.book h2 a:hover {
+    text-decoration: underline;
+    color: var(--secondary-color); 
+}
+
+.book p {
+    font-size: 0.9em;
+    color: var(--secondary-text); 
+    margin-top: 0;
+    margin-bottom: 0.5em; 
+}
+
+/* --- FIXED ALIGNMENT SECTION --- */
+.download-container {
+    display: flex;
+    justify-content: center; /* Centers the button horizontally */
+    align-items: center;
+    width: 100%;
+    margin-top: auto;
+    padding: 0;
+}
+
+.download-btn {
+    display: block;
+    width: 90%; /* Slight inset for a balanced look */
+    text-align: center;
+    padding: 0.8em; 
+    background-color: var(--success-color); 
+    color: white;
+    text-decoration: none;
+    border-radius: 8px; 
+    font-size: 1em; 
+    border: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+    background-color: #1a9c96; 
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+        padding: 1em;
+    }
+    #settings-column {
+        width: 100%;
+        margin-bottom: 1.5em;
+    }
+    header {
+        flex-direction: column;
+        gap: 1em;
+    }
+    .search-container {
+        width: 100%;
+    }
+    #search-input {
+        flex-grow: 1;
+    }
+    #book-list {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+        gap: 1.5em;
+    }
+}
