@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Gutenberg Library</title>
+    <title>My Digital Library</title>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Popular Books from Project Gutenberg 📚</h1>
+        <h1>My Digital Library 📚</h1>
         <div class="search-container">
-            <input type="text" id="search-input" placeholder="Search by title or author...">
+            <input type="text" id="search-input" placeholder="Search by title or author..."> 
             <button id="search-button">Search</button>
         </div>
     </header>
@@ -21,12 +21,20 @@
             <h2>Settings & Filters</h2>
             
             <section class="settings-group">
+                <h3>Data Source</h3>
+                <select id="source-select">
+                    <option value="gutenberg">Project Gutenberg</option>
+                    <option value="ncert">NCERT India Books</option>
+                </select>
+            </section>
+
+            <section class="settings-group">
                 <h3>Display Mode</h3>
                 <button id="dark-mode-toggle">Switch to Dark Mode 🌙</button>
             </section>
 
             <section class="settings-group">
-                <h3>Sort By Date (via ID)</h3>
+                <h3>Sort By</h3>
                 <select id="sort-select">
                     <option value="popular">Popularity (Default)</option>
                     <option value="ascending">Date: Oldest to Newest</option>
@@ -36,7 +44,7 @@
         </aside>
 
         <main>
-            <p id="status-message">Loading popular books...</p>
+            <p id="status-message">Loading books from Project Gutenberg...</p>
             
             <div id="book-list"></div>
         </main>

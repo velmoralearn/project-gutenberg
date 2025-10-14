@@ -10,7 +10,9 @@
     --card-bg: #fff;              /* White Card Background */
     --border-color: #ddd;         /* Light Border */
     --shadow-color: rgba(0, 0, 0, 0.15);
-    --success-color: #28a745;     /* Download Button Color (Success Green) */
+    --download-color: #28a745;    /* Download Button Color (Success Green) */
+    --view-color: #4f4d80;        /* View Book Color (Primary Indigo) - same as primary */
+    --disabled-color: #aaa;       /* Disabled button color */
     --input-bg: #fff;          
     --input-border: #ccc;
 }
@@ -24,7 +26,9 @@ body.dark-mode {
     --card-bg: #282848;           /* Slightly lighter dark blue for cards */
     --border-color: #3b3b6b;      /* Darker border for contrast */
     --shadow-color: rgba(0, 0, 0, 0.4);
-    --success-color: #20b2aa;     /* Teal/Cyan for download button */
+    --download-color: #20b2aa;    /* Teal/Cyan for download button */
+    --view-color: #7b4397;        /* Dark Mode View Book Color (Primary Purple) */
+    --disabled-color: #555;       /* Disabled button color */
     --input-bg: #1e1e3e;          
     --input-border: #4d4d7d;
 }
@@ -66,7 +70,8 @@ h1 {
     gap: 0.5em;
 }
 
-#search-input, button, select {
+/* Targeting input, button, and all select elements */
+#search-input, button, select { 
     font-family: var(--font-family); 
     padding: 0.7em 1.2em; 
     border-radius: 8px; 
@@ -76,8 +81,8 @@ h1 {
     transition: all 0.3s ease;
 }
 
-/* Button Styling (Using Primary Color for Light Mode, Gradient for Dark Mode) */
-button {
+/* Button Styling (Targets main search button and dark mode toggle) */
+button:not(.view-book-btn):not(.download-btn) { 
     background-color: var(--primary-color);
     color: white;
     cursor: pointer;
@@ -86,15 +91,15 @@ button {
 }
 
 /* Dark Mode Button Gradient (Velmora style) */
-body.dark-mode button:not(.download-btn) {
+body.dark-mode button:not(.view-book-btn):not(.download-btn) {
     background: linear-gradient(90deg, #7b4397, #dc2430); 
 }
-body.dark-mode button:hover:not(.download-btn) {
+body.dark-mode button:hover:not(.view-book-btn):not(.download-btn) {
     background: linear-gradient(90deg, #6a3a82, #c71f28);
 }
 
 /* Light Mode Button Hover */
-body:not(.dark-mode) button:hover:not(.download-btn) {
+body:not(.dark-mode) button:hover:not(.view-book-btn):not(.download-btn) {
     background-color: #383669;
 }
 
@@ -127,6 +132,12 @@ body:not(.dark-mode) button:hover:not(.download-btn) {
 
 .settings-group {
     margin-bottom: 1.5em;
+}
+
+/* Ensure select elements within settings column are full width */
+#source-select, #sort-select {
+    width: 100%;
+    box-sizing: border-box; /* Include padding/border in width */
 }
 
 main {
@@ -196,7 +207,7 @@ main {
 
 .book h2 a:hover {
     text-decoration: underline;
-    color: var(--secondary-color); 
+    color: var(--view-color); /* Corrected from --secondary-color to --view-color */
 }
 
 .book p {
@@ -206,34 +217,64 @@ main {
     margin-bottom: 0.5em; 
 }
 
-/* --- FIXED ALIGNMENT SECTION --- */
-.download-container {
+/* --- BUTTON GROUP STYLES (2 buttons) --- */
+.button-group-container-two {
     display: flex;
-    justify-content: center; /* Centers the button horizontally */
+    flex-direction: column; 
+    gap: 0.5em;
+    justify-content: center; 
     align-items: center;
     width: 100%;
     margin-top: auto;
     padding: 0;
 }
 
-.download-btn {
+/* Common button style for the group */
+.view-book-btn, .download-btn {
     display: block;
-    width: 90%; /* Slight inset for a balanced look */
+    width: 90%; 
     text-align: center;
     padding: 0.8em; 
-    background-color: var(--success-color); 
     color: white;
-    text-decoration: none;
     border-radius: 8px; 
     font-size: 1em; 
     border: none;
     font-weight: 500;
+    cursor: pointer;
     transition: background-color 0.3s ease;
+    text-decoration: none;
+    appearance: none; /* Make links look like buttons */
 }
 
-.download-btn:hover {
-    background-color: #1a9c96; 
+/* 1. View Book Button */
+.view-book-btn {
+    background-color: var(--view-color);
 }
+body:not(.dark-mode) .view-book-btn:hover {
+    background-color: #383669; 
+}
+body.dark-mode .view-book-btn:hover {
+    background-color: #6a3a82; 
+}
+
+
+/* 2. Download Button */
+.download-btn {
+    background-color: var(--download-color); /* Using the new consistent variable */
+}
+body:not(.dark-mode) .download-btn:hover {
+    background-color: #1e7e34; 
+}
+body.dark-mode .download-btn:hover {
+    background-color: #1a8f87; 
+}
+
+/* Disabled button style */
+.disabled-btn {
+    background-color: var(--disabled-color) !important;
+    cursor: not-allowed;
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

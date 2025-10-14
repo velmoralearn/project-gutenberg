@@ -1,0 +1,29 @@
+[
+    {
+      "id": "ncert-10-maths",
+      "title": "Mathematics",
+      "class": "Class 10",
+      "subject": "Maths",
+      "html_link": "https://ncert.nic.in/textbook.php?jemh1=0-14",
+      "epub_link": "https://ncert.nic.in/textbook/pdf/jemh1.zip",
+      "cover_url": "https://ncert.nic.in/textbook/eBook-covers/jemh1.jpg"
+    },
+    {
+      "id": "ncert-12-physics-1",
+      "title": "Physics Part I",
+      "class": "Class 12",
+      "subject": "Physics",
+      "html_link": "https://ncert.nic.in/textbook.php?leph1=0-8",
+      "epub_link": "https://ncert.nic.in/textbook/pdf/leph1.zip",
+      "cover_url": "https://ncert.nic.in/textbook/eBook-covers/leph1.jpg"
+    },
+    {
+      "id": "ncert-9-history",
+      "title": "India and the Contemporary World-I",
+      "class": "Class 9",
+      "subject": "Social Science (History)",
+      "html_link": "https://ncert.nic.in/textbook.php?iess4=0-5",
+      "epub_link": "https://ncert.nic.in/textbook/pdf/iess4.zip",
+      "cover_url": "https://ncert.nic.in/textbook/eBook-covers/iess4.jpg"
+    }
+  ]
